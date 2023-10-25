@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./components/pages/Home";
+import NavBar from "./components/layout/navbar";
+import NewNote from "./components/pages/NewNote";
+import Login from "./components/pages/Login";
+import { PrivateRoute } from "./components/utilities/PrivateRoutes/PrivateRoute";
+import { UnauthenticatedRoute } from "./components/utilities/PrivateRoutes/UnauthenticatedRoute";
+import { AuthProvider } from "./components/contexts/AuthContext";
+import Register from "./components/pages/Register";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <AuthProvider>
+          <NavBar />
+          <Routes>
+            <Route
+              path="/signin"
+              element={<UnauthenticatedRoute item={<Login />} />}
+            ></Route>
+            <Route
+              path="/signup"
+              element={<UnauthenticatedRoute item={<Register />} />}
+            ></Route>
+            <Route
+              exact
+              path="/"
+              element={<PrivateRoute item={<Home />} />}
+            ></Route>
+            <Route
+              path="/new-note"
+              element={<PrivateRoute item={<NewNote />} />}
+            ></Route>
+          </Routes>
+        </AuthProvider>
+      </Router>
     </div>
   );
 }
