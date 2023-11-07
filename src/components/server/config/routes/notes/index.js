@@ -63,7 +63,7 @@ router.post("/new", async (req, res) => {
     const newNote = { title, content, author };
 
     await new Note(newNote).save();
-    return res.status(200).json({ message: "Success creating the Note" });
+    return res.status(201).json({ message: "Success creating the Note" });
   } catch (err) {
     return res
       .status(400)
