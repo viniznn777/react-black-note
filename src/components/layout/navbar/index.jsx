@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Header from "./styles";
 import { Link } from "react-router-dom";
-import { AiOutlineHome, AiOutlineSearch, AiOutlineStar } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineStar } from "react-icons/ai";
 import { MdLogout } from "react-icons/md";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { Context } from "../../contexts/AuthContext";
@@ -17,11 +17,6 @@ const NavBar = () => {
             <li>
               <Link to="/">
                 <AiOutlineHome />
-              </Link>
-            </li>
-            <li>
-              <Link to="/">
-                <AiOutlineSearch />
               </Link>
             </li>
             <li>

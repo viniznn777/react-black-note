@@ -37,9 +37,6 @@ const NoteComponent = ({ title, note, favoriteValue, id }) => {
         <div className="container-nav">
           <nav>
             <ul>
-              <li title="Bloquear Nota">
-                <AiOutlineLock />
-              </li>
               <li
                 onClick={() => DeleteNote(id, user, token)}
                 title="Deletar Nota"
