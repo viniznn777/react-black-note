@@ -30,12 +30,16 @@ const NavBar = () => {
               </Link>
             </li>
             <li>
-              <Link to="/">
+              <Link to="/favorites">
                 <AiOutlineStar />
               </Link>
             </li>
             <li>
-              <button className="bg-transparent" onClick={handleLogout}>
+              <button
+                className="bg-transparent"
+                onClick={handleLogout}
+                title="Sair"
+              >
                 <MdLogout />
               </button>
             </li>

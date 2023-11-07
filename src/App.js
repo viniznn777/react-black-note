@@ -7,6 +7,10 @@ import { PrivateRoute } from "./components/utilities/PrivateRoutes/PrivateRoute"
 import { UnauthenticatedRoute } from "./components/utilities/PrivateRoutes/UnauthenticatedRoute";
 import { AuthProvider } from "./components/contexts/AuthContext";
 import Register from "./components/pages/Register";
+import Note from "./components/pages/Note";
+import Favorites from "./components/pages/Favorites";
+import EditNote from "./components/pages/EditNote";
+import PageNotFound from "./components/pages/404NotFound";
 
 function App() {
   return (
@@ -32,6 +36,20 @@ function App() {
               path="/new-note"
               element={<PrivateRoute item={<NewNote />} />}
             ></Route>
+            <Route
+              path="/note/:id"
+              element={<PrivateRoute item={<Note />} />}
+            ></Route>
+            <Route
+              path="/favorites"
+              element={<PrivateRoute item={<Favorites />} />}
+            ></Route>
+            <Route
+              path="/edit/:id"
+              element={<PrivateRoute item={<EditNote />} />}
+            ></Route>
+            {/* Rota para caso a url não corresponda a nenhuma rota acima */}
+            <Route path="*" element={<PageNotFound />}></Route>
           </Routes>
         </AuthProvider>
       </Router>

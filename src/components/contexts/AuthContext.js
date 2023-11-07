@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 import {
   alertMessage,
   errorMessage,
+  infoMessage,
   successMessage,
 } from "../utilities/toastMessages";
 import { useNavigate } from "react-router-dom";
@@ -47,6 +48,11 @@ function AuthProvider({ children }) {
       successMessage("Conta registrada com sucesso!");
       navigate("/signin");
     } catch (err) {
+      errorMessage("Não foi possível criar sua conta. Tente Novamente!");
+      infoMessage(
+        "Se o problema persistir, aguarde alguns instantes para fazer o registro novamente!",
+        10000
+      );
       console.error("Erro ao criar conta: ", err);
     }
   };
@@ -75,6 +81,11 @@ function AuthProvider({ children }) {
         return;
       }
     } catch (error) {
+      errorMessage("Não foi possível fazer o login. Tente Novamente!");
+      infoMessage(
+        "Se o problema persistir, aguarde alguns instantes para fazer o login novamente!",
+        10000
+      );
       console.error("Erro ao fazer login:", error);
     }
   };
@@ -96,7 +107,7 @@ function AuthProvider({ children }) {
 
   // =============================== FIM ====================================
 
-  // Evento que observa as chaves "token" e "user" no localStorage. Caso haja qualquer mudança não autorizada, será feito o logout do usuário e retornado no console o status 401 de acordo com o servidor, pois o servidor faz a validação do token jwt do usuário.
+  // Evento que observa as chaves "token" e "user" no localStorage. Caso haja qualquer mudança não autorizada, será feito o logout do usuário e retornado no console o status 401 de acordo com o servidor, pois o servidor faz a validação do token jwt do usuário e o id que está salvo no Banco de Dados.
   window.addEventListener("storage", (e) => {
     if (e.key === "token" || e.key === "user") {
       handleLogout();

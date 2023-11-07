@@ -12,9 +12,12 @@ const Container = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-
   text-align: center;
   flex-direction: column;
+  transition: all 0.2s;
+  &:hover {
+    box-shadow: 0px 0px 0px 1.2px ${defaultGreen};
+  }
 
   .icon-star {
     color: ${defaultGreen};
@@ -34,6 +37,14 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+    }
   }
 `;
 

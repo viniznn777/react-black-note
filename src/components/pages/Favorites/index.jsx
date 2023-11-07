@@ -1,30 +1,29 @@
 import React, { useContext, useEffect, useState } from "react";
 import Container from "./styles";
-import Blocks from "./Blocks";
+import { LoadFavorites } from "./Functions/LoadFavorites";
 import { Context } from "../../contexts/AuthContext";
-import { LoadMyNotes } from "./functions/LoadMyNotes";
 import Loader from "../../utilities/Loader";
+import Blocks from "../Home/Blocks";
 
-const Home = () => {
-  const { user, token, handleLogout } = useContext(Context);
+const Favorites = () => {
+  const { user, token } = useContext(Context);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Função para carregar as notas do usuário
-    LoadMyNotes(user, token, setData, handleLogout)
+    LoadFavorites(user, token, setData)
       .then(() => setIsLoading(false))
       .catch((err) => {
-        setIsLoading(false);
         console.log(err);
+        setIsLoading(false);
       });
-    document.title = "BlackNote";
-  }, [user, token, handleLogout]);
+    document.title = "BlackNote | Favoritos";
+  }, [user, token]);
 
   return (
     <Container className="container-fluid">
       <div className="container">
-        <p className="fs-2 text-center text-light fw-bold">BlackNote</p>
+        <p className="fs-2 text-center text-light fw-bold">Favoritos ⭐</p>
         <div className="row">
           {isLoading ? (
             <Loader />
@@ -39,7 +38,7 @@ const Home = () => {
             ))
           ) : (
             <p className="fs-2 fw-bold text-light text-center">
-              Você ainda não tem notas 🔎
+              Você ainda não tem notas favoritas 🔎
             </p>
           )}
         </div>
@@ -48,4 +47,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Favorites;

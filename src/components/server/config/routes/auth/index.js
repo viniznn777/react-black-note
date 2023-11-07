@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const User = require("../../models/User");
 const generateToken = require("../../utilities/generateToken");
 
+// Rota para realizar o registro do usuário no banco de dados
 router.post("/register", async (req, res) => {
   const { email, password } = req.body;
 
