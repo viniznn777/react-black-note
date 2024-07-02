@@ -25,7 +25,7 @@ export default async function SendData(
     };
     // Chave "me" deve conter o id de usuário, e chave key deve conter o token JWT retornado pelo servidor ao fazer o login
     const response = await URL_NOTES.post(`/new?me=${me}&key=${key}`, body);
-    if (response.status === 200) {
+    if (response.status === 201) {
       setTitle("");
       setContent("");
       successMessage("Notas criada com sucesso!");
